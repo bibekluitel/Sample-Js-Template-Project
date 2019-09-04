@@ -1,5 +1,7 @@
 import React from 'react';
 import FormContext from './FormContext';
+import { isNumber } from 'util';
+
 
 class Form extends React.PureComponent {
   constructor(props) {
@@ -18,30 +20,43 @@ class Form extends React.PureComponent {
     })
   }
 
-  validateData = () => {
+  isNotEmpty = (value) => !!(value === 0 || value)
+
+  isNumber = (value) => !isNaN(value) && !(value === '')
+
+  isTelephoneNum = (value) => `${value}`.length >9 && `${value}`.length<=10
+
+  validateData = (ruleList, state) => {
 
     //  need to check validation and parsing the input for scripting
     // checking if the value is empty
-    const isNotEmpty = (value) => (value === 0 || value)
-
     const rulesHM = {
-      isRequired: isNotEmpty
+      isRequired: this.isNotEmpty,
+      isNumber: this.isNumber, 
+      isTelephone: this.isTelephoneNum
     }
 
-    const nameList = Object.keys(this.ruleList)
+    const validationMessage = {
+      isRequired: "Please fill all the required Field.",
+      isNumber: "Please Enter the numbers only.",
+      isTelephone: "Please provide the correct Telephone Number"
+    }
+
+    const nameList = Object.keys(ruleList)
 
     for (let i = 0; i < nameList.length; i++) {
 
       let key = nameList[i];
-      let data = this.state[key];
-      let rules = this.ruleList[key];
+      let data = state[key];
+      let rules = ruleList[key];
+
 
       for (let j = 0; j < rules.length; j++) {
 
         const ruleFunc = rulesHM[rules[j]];
 
         if (!ruleFunc(data)) {
-          return false;
+          return validationMessage[rules[j]];
         }
       }
     }
@@ -49,20 +64,16 @@ class Form extends React.PureComponent {
   }
 
   getAllValue = (key) => {
-
-    if (this.validateData()) {
+    const validationresult = this.validateData(this.ruleList, this.state);
+    if (validationresult === true) {
       return this.state
     }
+    return validationresult
   }
 
   getValue = (key) => {
 
     return this.state[key];
-  }
-
-  isObjectFunction = (obj) => {
-
-    return Object.prototype.toString.call(obj) === '[object function]';
   }
 
   updateRule = (name, rule) => {

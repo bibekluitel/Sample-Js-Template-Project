@@ -14,9 +14,9 @@ class CustomerDetails extends React.PureComponent {
 
   onSubmit = async (value) => {
 
-    if (!value) {
+    if (typeof value === "string" || !value) {
 
-      alert('Please Fill in all required Fields');
+      alert(value);
       return
     }
 
@@ -67,7 +67,7 @@ class CustomerDetails extends React.PureComponent {
                 <InputWithLabel labelText='Email' labelPosition='top' name='email' id="email" />
               </div>
               <div className={styles.row}>
-                <TelephoneInputWithLabel labelText="Phone Number" labelPosition='top' name='telephone' id="telephone"/>
+                <TelephoneInputWithLabel labelText="Phone Number" labelPosition='top' name='telephone' id="telephone" rules={["isNumber", "isTelephone"]}/>
               </div>
             </div>
 
@@ -91,7 +91,7 @@ class CustomerDetails extends React.PureComponent {
               </div>
 
               <div className={styles.row}>
-                <InputWithLabel isRequired labelText="Amount" name="amount" id="amount"/>
+                <InputWithLabel isRequired labelText="Amount" name="amount" id="amount" rules={["isNumber"]}/>
               </div>
               <div className={styles.buttonWrapper}>
                 <SubmitButton onSubmit={this.onSubmit} isDisabled={this.state.isSubmitting} id="submit" >

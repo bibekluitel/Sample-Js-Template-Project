@@ -8,6 +8,7 @@ export default function InputWithLabel(props) {
 
   useEffect(() => {
     props.isRequired && context.updateRule(props.name, 'isRequired');
+    props.rules && props.rules.map((r)=> context.updateRule(props.name, r))
   }, []);
 
   return (<div style={{ display: "flex", flex: 1, flexDirection: 'column', padding: '10px 10px' }} className={props.wrapperStyle}>

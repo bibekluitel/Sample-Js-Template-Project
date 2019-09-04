@@ -12,6 +12,7 @@ const TelephoneInputWithLabel = (props) => {
 
   useEffect(() => {
     props.isRequired && context.updateRule(props.name, 'isRequired');
+    props.rules && props.rules.map((r)=> context.updateRule(props.name, r))
   }, []);
 
   return (<div style={{ display: "flex", flex: 1, flexDirection: 'column' }} className={props.wrapperStyle}>
