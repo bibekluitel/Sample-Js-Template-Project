@@ -3,7 +3,8 @@ import Input from './Input';
 import InputWithLabel from './InputWithLabel';
 import TelephoneInputWithLabel from './TelephoneInputWithLabel';
 import DropDownList from './DropDownLIst';
-import DropDownListWithLabel from './DropDownListWithLabel'
+import DropDownListWithLabel from './DropDownListWithLabel';
+import SubmitButton from './SubmitButton';
 
 
 export  {
@@ -12,5 +13,6 @@ export  {
   InputWithLabel,
   TelephoneInputWithLabel, 
   DropDownList, 
-  DropDownListWithLabel
+  DropDownListWithLabel,
+  SubmitButton
 }

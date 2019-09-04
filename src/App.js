@@ -33,6 +33,7 @@ class App extends React.Component {
 
   // TODO: Implement a theme architecture for application
   // TODO: Using SCSS instead of CSS
+  // TODO: use Skinh HAsh for Internalization
 
   render() {
     return (
