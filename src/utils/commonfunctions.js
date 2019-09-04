@@ -12,6 +12,6 @@ export const submitData = ({ from, to, amount }) => {
     .catch((err) => {
 
       alert('This transaction cannot be converted. Please Contact the adminstrator')
-      console.error({ err })
+      console.error({ err });
     })
 }

@@ -2,8 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import styles from './style.module.css';
 import './../../App.css';
-import { Form, InputWithLabel, TelephoneInputWithLabel, DropDownListWithLabel } from './../../lib/Form';
-import { PrimaryButton } from './../../lib/Button';
+import { Form, InputWithLabel, TelephoneInputWithLabel, DropDownListWithLabel, SubmitButton } from './../../lib/Form';
 import { submitData } from './../../utils/commonfunctions';
 import AppContext from './../../AppContext';
 
@@ -24,9 +23,9 @@ class CustomerDetails extends React.PureComponent {
     this.setState({ isSubmitting: true });
 
     const result = await submitData({ from: value.fromCurrency, to: value.toCurrency, amount: value.amount });
-    
-    if(!result) {
-      
+
+    if (!result) {
+      return
     }
 
     this.setState({
@@ -57,25 +56,24 @@ class CustomerDetails extends React.PureComponent {
         <div className="header">
           <h1>Quick Quote</h1>
         </div>
-
         <Form>
-          {({ onChange, getAllValue, updateRule }) => (<div className={styles.formWrapper}>
+          <div className={styles.formWrapper}>
             <div className={styles.customerinfo}>
               <div className={`${styles.row}`}>
-                <InputWithLabel labelText='First Name' isRequired labelPosition='top' onChange={onChange} name='firstname' updateRule={updateRule} />
-                <InputWithLabel labelText="Last Name" isRequired labelPosition='top' onChange={onChange} name='lastname' updateRule={updateRule} />
+                <InputWithLabel labelText='First Name' isRequired labelPosition='top' name='firstname' id="firstname" />
+                <InputWithLabel labelText="Last Name" isRequired labelPosition='top' name='lastname' id="lastname" />
               </div>
               <div className={styles.row}>
-                <InputWithLabel labelText='Email' labelPosition='top' name='email' />
+                <InputWithLabel labelText='Email' labelPosition='top' name='email' id="email" />
               </div>
               <div className={styles.row}>
-                <TelephoneInputWithLabel labelText="Phone Number" labelPosition='top' onChange={onChange} name='telephone' />
+                <TelephoneInputWithLabel labelText="Phone Number" labelPosition='top' name='telephone' id="telephone"/>
               </div>
             </div>
 
             <div className={styles.transactioninfo}>
               <div className={styles.row}>
-                <DropDownListWithLabel isRequired labelText='From Currency' onChange={onChange} name="fromCurrency" updateRule={updateRule} >
+                <DropDownListWithLabel isRequired labelText='From Currency' name="fromCurrency" id="fromCurrency" >
                   {/* TODO: get a dynamic map for currency list */}
                   <option value=''> </option>
                   <option value='AUD'> Australian Dollar(AUD) </option>
@@ -83,7 +81,7 @@ class CustomerDetails extends React.PureComponent {
                   <option value='GBP'> Pound Sterling(GBP) </option>
                 </DropDownListWithLabel>
 
-                <DropDownListWithLabel isRequired labelText='To Currency' onChange={onChange} name="toCurrency" updateRule={updateRule}>
+                <DropDownListWithLabel isRequired labelText='To Currency' name="toCurrency" id="toCurrency">
                   {/* TODO: get a dynamic map for currency list */}
                   <option value=''> </option>
                   <option value='AUD'> Australian Dollar(AUD) </option>
@@ -93,17 +91,17 @@ class CustomerDetails extends React.PureComponent {
               </div>
 
               <div className={styles.row}>
-                <InputWithLabel isRequired labelText="Amount" onChange={onChange} name="amount" updateRule={updateRule} />
+                <InputWithLabel isRequired labelText="Amount" name="amount" id="amount"/>
               </div>
               <div className={styles.buttonWrapper}>
-                <PrimaryButton onClick={() => !this.state.isSubmitting && this.onSubmit(getAllValue())} >
+                <SubmitButton onSubmit={this.onSubmit} isDisabled={this.state.isSubmitting} id="submit" >
                   Get Quote
-                </PrimaryButton>
+                </SubmitButton>
               </div>
 
             </div>
 
-          </div>)}
+          </div>
         </Form>
       </div>
     );
@@ -112,4 +110,5 @@ class CustomerDetails extends React.PureComponent {
 
 
 CustomerDetails.contextType = AppContext;
+
 export default CustomerDetails;   

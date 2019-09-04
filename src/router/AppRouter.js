@@ -1,11 +1,10 @@
 
 import React from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
-import SecureRoute from '.';
+// import SecureRoute from '.';
 import Pages from './../pages';
 
 export default function AppRouter() {
-  console.log('here')
   return (
     <Router>
       <Switch>

@@ -13,9 +13,9 @@ class ConversionResult extends React.PureComponent {
 
   render() {
 
-    const {conversionDetails } = this.state;
+    const { conversionDetails } = this.state;
 
-    if(!conversionDetails) {
+    if (!conversionDetails) {
 
       return this.props.history.push('customerdetails');
     }
@@ -29,7 +29,7 @@ class ConversionResult extends React.PureComponent {
           OFX Customer Rate
         </div>
         <div className={styles['rate']}>
-          {conversionDetails.CustomerRate }
+          {conversionDetails.CustomerRate}
         </div>
       </div>
       <div className={styles['row']}>
@@ -48,12 +48,10 @@ class ConversionResult extends React.PureComponent {
         <div className={styles['currency']}>
           <span className={styles.code}>
             {conversionDetails.toCurrency}
-              </span>
+          </span>
           <span>
-            {
-              conversionDetails.CustomerAmount
-            }
-              </span>
+            {conversionDetails.CustomerAmount}
+          </span>
         </div>
       </div>
       <div className={`${styles['row']} ${styles['footer']}`}>

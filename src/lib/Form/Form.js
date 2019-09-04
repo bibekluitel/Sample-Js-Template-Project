@@ -1,4 +1,5 @@
 import React from 'react';
+import FormContext from './FormContext';
 
 class Form extends React.PureComponent {
   constructor(props) {
@@ -19,12 +20,14 @@ class Form extends React.PureComponent {
 
   validateData = () => {
 
+    //  need to check validation and parsing the input for scripting
     // checking if the value is empty
     const isNotEmpty = (value) => (value === 0 || value)
 
     const rulesHM = {
       isRequired: isNotEmpty
     }
+
     const nameList = Object.keys(this.ruleList)
 
     for (let i = 0; i < nameList.length; i++) {
@@ -46,16 +49,14 @@ class Form extends React.PureComponent {
   }
 
   getAllValue = (key) => {
-    // console.log(this.validateData())
 
-    // console.log(this.state, this.ruleList)
     if (this.validateData()) {
       return this.state
     }
-    
   }
+
   getValue = (key) => {
-    
+
     return this.state[key];
   }
 
@@ -71,24 +72,14 @@ class Form extends React.PureComponent {
   }
 
   render() {
-
-    return this.props.children({
+    return (<FormContext.Provider value={{
       onChange: this.updateKey,
       getValue: this.getValue,
       getAllValue: this.getAllValue,
       updateRule: this.updateRule,
-    });
-
-    return this.isObjectFunction(this.props.children)
-      ?
-      this.props.children({
-        onChange: this.updateKey,
-        getValue: this.getValue,
-      })
-      :
-      <React.Fragment>
-        {this.props.children}
-      </React.Fragment>
+    }}>
+      {this.props.children}
+    </FormContext.Provider>);
   }
 
 }
