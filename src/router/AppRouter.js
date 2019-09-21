@@ -1,16 +1,17 @@
 
 import React from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
-// import SecureRoute from '.';
+import { SecureRoute } from '.';
 import Pages from './../pages';
 
 export default function AppRouter() {
   return (
     <Router>
       <Switch>
-        <Route path="/customerdetails" component={Pages.CustomerDetails} />
-        <Route path="/conversionresult" component={Pages.CustomerResult} />
-        <Route path="/" component={Pages.Dashboard} />
+        <SecureRoute path="/customerdetails" component={Pages.CustomerDetails} />
+        <SecureRoute path="/conversionresult" component={Pages.CustomerResult} />
+        <SecureRoute path="/login" component={Pages.Login} public={true} />
+        <SecureRoute path="/" component={Pages.Dashboard} />
       </Switch>
     </Router>
   );
