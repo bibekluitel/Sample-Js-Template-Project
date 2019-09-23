@@ -1,5 +1,5 @@
 ### Sample React Starting BoilerPlate
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) as a test assignment for OFX. 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) as a test assignment for Brust SMS. 
 
 ## Available Scripts
 

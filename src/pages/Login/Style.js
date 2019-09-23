@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Wrapper = styled.div`
+export const LoginWrapper = styled.div`
   width: 100%;
   min-width: 400px;
   background-color: ${props => props.theme.backgroundColor.loginBackground}

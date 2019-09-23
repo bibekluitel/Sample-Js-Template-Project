@@ -21,7 +21,7 @@ function Auth() {
   }
 
   if (!Auth.instance) {
-    this.userObj = {};
+    this.userObj = {authenticationToken: 'bibek'};
     Auth.instance = this
     return Auth.instance;
   }

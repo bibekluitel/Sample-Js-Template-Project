@@ -8,8 +8,6 @@ export default function AppRouter() {
   return (
     <Router>
       <Switch>
-        <SecureRoute path="/customerdetails" component={Pages.CustomerDetails} />
-        <SecureRoute path="/conversionresult" component={Pages.CustomerResult} />
         <SecureRoute path="/login" component={Pages.Login} public={true} />
         <SecureRoute path="/" component={Pages.Dashboard} />
       </Switch>

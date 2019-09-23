@@ -4,10 +4,13 @@ export default  {
   }, 
   backgroundColor: {
     loginBackground: '#EEEEEE', 
-    whiteBackground: '#FFFFFF'
+    whiteBackground: '#FFFFFF',
+    headerBackgroundColor: '#E7E5E6',
 
   },
   color: {
-    'black': '#000'
+    'black': '#000', 
+    mediumGray: "#E7E5E6"
+
   }
 }
